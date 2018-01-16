@@ -60,11 +60,11 @@ app.on('ready', function() {
           checked: true
         },
         {
-          label: '单选框1',
+          label: '单选框2',
           type: 'radio',
         },
         {
-          label: '单选框1',
+          label: '单选框3',
           type: 'radio',
         }                
       ]
@@ -77,11 +77,11 @@ app.on('ready', function() {
           checked: true
         },
         {
-          label: '多选框1',
+          label: '多选框2',
           type: 'checkbox',
         },
         {
-          label: '多选框1',
+          label: '多选框3',
           type: 'checkbox',
         }                
       ]
