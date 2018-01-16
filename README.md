@@ -84,10 +84,13 @@ npm run package:mac
     - checkViewForward
     - checkViewBack
     - getViewUrl
+    - getViewTitle
     - canGoToOffset
     - isDevToolsOpen
     - isDevToolsFocus
     - isAudioMuted
+    - isLoading
+    - isWaitingForResponse
     - Notification
 
   - webview changeViewUrl test
