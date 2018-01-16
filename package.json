@@ -10,11 +10,7 @@
     "package:mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --out=./dist --icon=assets/app-icon/mac/app.icns --osx-sign.identity='Developer ID Application: GitHub' --extend-info=assets/mac/info.plist",
     "package:win64": "electron-packager . --overwrite --platform=win32 --arch=x64 --out=./dist --electron-version=1.7.10 --asar --icon=lib/img/favicon.ico --ignore=\"(dist|.gitignore|LICENSE|LICENSE.md|README.md|node_modules)\"",    
     "package:win32": "electron-packager . --overwrite --platform=win32 --arch=ia32 --out=./dist --electron-version=1.7.10 --asar --icon=lib/img/favicon.ico --ignore=\"(dist|.gitignore|LICENSE|LICENSE.md|README.md|node_modules)\"",
-    "package:linux": "electron-packager . --overwrite --platform=linux --arch=x64 --out=./dist --icon=lib/img/favicon.ico --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config.js|node_modules)\"",
-    "package:sign-exe": "signcode './out/Electron API Demos-win32-ia32/Electron API Demos.exe' --cert ~/electron-api-demos.p12 --prompt --name 'Electron API Demos' --url 'http://electron.atom.io'",
-    "package:installer": "node ./script/installer.js",
-    "package:sign-installer": "signcode './out/windows-installer/ElectronAPIDemosSetup.exe' --cert ~/electron-api-demos.p12 --prompt --name 'Electron API Demos' --url 'http://electron.atom.io'",
-    "package:mas": "./script/mas.sh"
+    "package:linux": "electron-packager . --overwrite --platform=linux --arch=x64 --out=./dist --icon=lib/img/favicon.ico --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config.js|node_modules)\""
   },
   "repository": "https://github.com/mowatermelon/learn-electron",
   "keywords": [
