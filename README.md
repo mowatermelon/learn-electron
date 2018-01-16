@@ -39,7 +39,10 @@ npm run package:mac
   - copy
   - paste
   - selectall
+  - unselect
+  - delete
   - fullScreen
+  - print
 
 - radio test
 
@@ -61,10 +64,19 @@ npm run package:mac
 - rightClick
   - webview action test
     - refresh
+    - force refresh
     - goBack
     - goForward
     - zoomIn
     - zoomOut
+    - ClearHistory
+    - toggle DevTools
+    - find in page
+    - print
+    - replace
+    - replace match style
+    - insert text
+    - AudioMuted
 
   - alert test
 
@@ -72,6 +84,10 @@ npm run package:mac
     - checkViewForward
     - checkViewBack
     - getViewUrl
+    - canGoToOffset
+    - isDevToolsOpen
+    - isDevToolsFocus
+    - isAudioMuted
     - Notification
 
   - webview changeViewUrl test
