@@ -31,26 +31,59 @@ npm run package:mac
 
 ## features
 
-- menu
-
-  - DevTools test
-    - openDevTools
-    - closeDevTools
-  - quit test
+- action test
+  - openFile
+  - undo
+  - redo
+  - cut
+  - copy
+  - paste
+  - selectall
+  - fullScreen
 
 - radio test
 
 - checkbox test
 
-- action test
-  - undo
-  - openFile
+- aid-action test
+
+  - DevTools test
+    - openDevTools
+    - closeDevTools
+  - quit test
+    - function quit
+    - normal quit
+  - dialog test
+    - showMessageBox
+    - showSaveDialog
+    - showErrorBox
 
 - rightClick
-  - refresh
-  - alert
-  - goBack
-  - goForward
+  - webview action test
+    - refresh
+    - goBack
+    - goForward
+    - zoomIn
+    - zoomOut
+
+  - alert test
+
+  - webview info test
+    - checkViewForward
+    - checkViewBack
+    - getViewUrl
+    - Notification
+
+  - webview changeViewUrl test
+
+  - webview saveMenu test
+    - saveScreenShot
+    - savePdf
+
+- Tray
+  - win.show
+  - win.hide
+  - app.quit
 
 ## Tip
 
