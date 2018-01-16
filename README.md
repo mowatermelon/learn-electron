@@ -61,3 +61,9 @@ npm run package:mac
 - rightClick
   - refresh
   - alert
+  - goBack
+  - goForward
+
+## Tip
+
+Package the corresponding system needs to be consistent with the current operating system
