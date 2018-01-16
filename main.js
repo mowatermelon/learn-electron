@@ -47,7 +47,8 @@ function initialize () {
       height: 700,
       frame: true,
       icon:path.join(__dirname, 'lib/img/favicon.ico'),
-      show: false
+      show: false,
+      backgroundColor: '#2e2c29'
     };
 
 
@@ -86,12 +87,14 @@ function initialize () {
   })
 
   app.on('window-all-closed', () => {
-    if (process.platform != 'darwin')
+    if (process.platform != 'darwin'){
       app.quit();
+    }
+    tray.destroy();
   });
 
   app.on('will-quit', function () {
-    globalShortcut.unregisterAll()
+    globalShortcut.unregisterAll();
   });
 
   app.on('activate', () => {
@@ -163,8 +166,20 @@ function loadMenu(){
           accelerator: 'CmdOrCtrl+A',
           role: 'selectall'
         },{
-          type: 'separator'
+          label: '取消全选',
+          role: 'unselect',
+          visible:false
         },{
+          type: 'separator'
+        },
+        {
+          label: '删除',
+          role: 'delete'
+        },
+        {
+          type: 'separator'
+        },
+        {
           label: '切换全屏状态',
           accelerator: (function () {
             if (process.platform === 'darwin') {
@@ -178,6 +193,13 @@ function loadMenu(){
               focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
             }
           }
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: '打印',
+          role: 'print'
         }               
       ]
     },    
@@ -317,8 +339,35 @@ function loadMenu(){
                 });
               }
             }
+          },
+          {
+            label: '证书验证窗体',
+            visible:false,
+            click: (item, focusedWindow) => {
+              if (focusedWindow) {
+                const certificates = {
+                  data:'kkk',
+                  issuer:'mowatermelon',
+                  issuerName:'mowatermelon',
+                  issuerCert:'mowatermelon',
+                  subject:'mowatermelon',
+                  subjectName:'watermelon',
+                  serialNumber:'mowatermelon',
+                  validStart:1516125560393,
+                  validExpiry:1516125560393,
+                  fingerprint:'mowatermelon'
+                };
+                const options = {
+                  certificate:certificates,
+                  message:'啦啦啦啦'
+                };
+                dialog.showCertificateTrustDialog(options, function (filename) {
+                  if (!filename) filename = '没有找到路径';
+                  console.log(`path save to ${filename}`);
+                });
+              }
+            }
           }
-
         ]
 
         }
@@ -368,7 +417,12 @@ function loadMenu(){
         },{
           label: '最小化',
           accelerator: 'CmdOrCtrl+M',
-          role: 'minimize'
+          role: 'minimize',
+          click: (item, focusedWindow) =>{
+            if (focusedWindow) {
+              focusedWindow.isMinimized() ? focusedWindow.unminimize() : focusedWindow.minimize();
+            }
+          }
         },{
           label: '最大化',
           accelerator: 'CmdOrCtrl+L',
@@ -496,6 +550,10 @@ function addTray(){
       click: () =>{
         if(!mainWindow.isVisible()){
           mainWindow.show();
+        }else{
+          if(mainWindow.isMinimized()){
+            mainWindow.unminimize();
+          }
         }
       }
     },
@@ -519,4 +577,13 @@ function addTray(){
 
   tray.setContextMenu(contextMenu);
 
+  tray.on('click', () => {
+    if(!mainWindow.isVisible()){
+      mainWindow.show();
+    }else{
+      if(mainWindow.isMinimized()){
+        mainWindow.unminimize();
+      }
+    }
+  });
 }
