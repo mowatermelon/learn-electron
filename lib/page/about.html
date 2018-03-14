@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>关于 electron-watermelon</title>
+    <style type="text/css">
+        body{
+            background: #eee;
+            overflow: hidden;
+        }
+        .about{
+            text-align: center;
+            padding: 15px 0;
+        }
+        .about img{
+            width: 70px;
+        }
+    </style>
+    <script type="text/javascript">
+        function openLink(event) {
+            event.preventDefault();
+            require('electron').shell.openExternal('https://github.com/mowatermelon/learn-electron');
+        }
+    </script>
+</head>
+<body>
+    <div class="about">
+        <img src="../img/bgIcon.png">
+        <p>electron-watermelon v1.0.0</p>
+        <a href="https://github.com/mowatermelon/learn-electron" onclick="openLink(event)">https://github.com/mowatermelon/learn-electron</a>
+    </div>
+</body>
+</html>
