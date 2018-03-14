@@ -2,11 +2,16 @@ const electron = require('electron');
 const path = require('path');
 const autoUpdater = require('./lib/js/auto-updater');
 const {app, BrowserWindow, Menu,shell,dialog,Tray,Notification,globalShortcut} = require('electron');
+const url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is garbage collected.
 let mainWindow = null;
 let tray = null;
+let win_about = null;
+let logo = path.join(__dirname, 'lib/img/favicon.ico');
+let slogan = path.join(__dirname, 'lib/img/bgIcon.png');
+
 const debug = /--debug/.test(process.argv[2]);
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -46,7 +51,7 @@ function initialize () {
       width: 800, 
       height: 700,
       frame: true,
-      icon:path.join(__dirname, 'lib/img/favicon.ico'),
+      icon: logo,
       show: false,
       backgroundColor: '#2e2c29'
     };
@@ -387,7 +392,36 @@ function loadMenu(){
             console.log("checkForUpdate");
             electron.autoUpdater.checkForUpdates();
           }
-        },{
+        },
+        {
+          label: '关于 electron-watermelon',
+          click:function(){
+              if (win_about == null) {
+                win_about = new BrowserWindow({
+                    width: 300,
+                    height: 240,
+                    title: '关于 electron-watermelon',
+                    center: true,
+                    resizable: false,
+                    frame:true,
+                    icon: logo,
+                    minimizable: false,
+                    maximizable: false
+                });
+                win_about.setMenu(null)
+                win_about.loadURL(url.format({
+                    pathname: path.join(__dirname, 'lib/page/about.html'),
+                    protocol: 'file:',
+                    slashes: true
+                }));
+
+                win_about.on('closed', (e) => {
+                    win_about = null;
+                });
+            }
+          }
+        },
+        {
           label: '重新加载更新包',
           enabled: true,
           visible:true,
@@ -530,7 +564,7 @@ function getNotification(title,body){
   const notification = {
     title: title,
     body: body,
-    icon:path.join(__dirname, '../../lib/img/bgIcon.png'),
+    icon:slogan,
     silent:false
   };
   const myNotification = new Notification(notification.title, notification);
@@ -543,7 +577,7 @@ function getNotification(title,body){
 }
 
 function addTray(){
-  tray = new Tray(path.join(__dirname, 'lib/img/favicon.ico'));
+  tray = new Tray(logo);
   const contextMenu = Menu.buildFromTemplate([
     {
       label: '打开软件',
