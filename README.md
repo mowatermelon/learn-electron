@@ -12,9 +12,9 @@ npm install electron -g
 npm install electron-packager -g
 
 # Clone this repository
-git clone https://github.com/mowatermelon/learn-electron.git
+git clone -b todolist https://github.com/mowatermelon/learn-electron.git todolist
 # Go into the repository
-cd learn-electron
+cd todolist
 # Install dependencies
 npm install
 # Run the app
@@ -31,78 +31,10 @@ npm run package:mac
 
 ## features
 
-- action test
-  - openFile
-  - undo
-  - redo
-  - cut
-  - copy
-  - paste
-  - selectall
-  - unselect
-  - delete
-  - fullScreen
-  - print
-
-- radio test
-
-- checkbox test
-
-- aid-action test
-
-  - DevTools test
-    - openDevTools
-    - closeDevTools
-  - quit test
-    - function quit
-    - normal quit
-  - dialog test
-    - showMessageBox
-    - showSaveDialog
-    - showErrorBox
-
-- rightClick
-  - webview action test
-    - refresh
-    - force refresh
-    - goBack
-    - goForward
-    - zoomIn
-    - zoomOut
-    - ClearHistory
-    - toggle DevTools
-    - find in page
-    - print
-    - replace
-    - replace match style
-    - insert text
-    - AudioMuted
-
-  - alert test
-
-  - webview info test
-    - checkViewForward
-    - checkViewBack
-    - getViewUrl
-    - getViewTitle
-    - canGoToOffset
-    - isDevToolsOpen
-    - isDevToolsFocus
-    - isAudioMuted
-    - isLoading
-    - isWaitingForResponse
-    - Notification
-
-  - webview changeViewUrl test
-
-  - webview saveMenu test
-    - saveScreenShot
-    - savePdf
-
-- Tray
-  - win.show
-  - win.hide
-  - app.quit
+- todo
+  - add todo
+  - remove todo
+  - edit todo
 
 ## Tip
 

@@ -1,0 +1,121 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-touch-action: none;
+  text-rendering: optimizeLegibility;
+  outline: 0 none;
+}
+
+body ::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+body ::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+button,
+html,
+input,
+select,
+textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html:lang(zh) body {
+  font-family: Microsoft Yahei, \\5FAE\8F6F\96C5\9ED1, STXihei, Meiryo UI, Meiryo, \\30E1\30A4\30EA\30AA, "\FF2D\FF33 \FF30\30B4\30B7\30C3\30AF", MS PGothic, Hiragino Kaku Gothic Pro, Arial Unicode MS, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+html:lang(zh) .button,
+html:lang(zh) button {
+  font-family: Microsoft Yahei, \\5FAE\8F6F\96C5\9ED1, STXihei, Meiryo UI, Meiryo, \\30E1\30A4\30EA\30AA, "\FF2D\FF33 \FF30\30B4\30B7\30C3\30AF", MS PGothic, Hiragino Kaku Gothic Pro, Arial Unicode MS, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+html:lang(zh) [type=email],
+html:lang(zh) [type=password],
+html:lang(zh) [type=text] {
+  font-family: Microsoft Yahei, \\5FAE\8F6F\96C5\9ED1, STXihei, Meiryo UI, Meiryo, \\30E1\30A4\30EA\30AA, "\FF2D\FF33 \FF30\30B4\30B7\30C3\30AF", MS PGothic, Hiragino Kaku Gothic Pro, Arial Unicode MS, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+[type=email].chromeless,
+[type=password].chromeless,
+[type=text].chromeless {
+  border: none !important;
+  background: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+
+.addTask .addTask-input {
+  font-size: 15px;
+  padding: 16px 18px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  -ms-transition: none;
+  transition: none;
+  color: #34373d;
+}
+
+html [type=email],
+html [type=password],
+html [type=text] {
+  font-family: Segoe, Segoe UI, Arial, "sans-serif";
+}
+
+[type=email],
+[type=password],
+[type=text] {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 6px;
+  font-weight: 500;
+  font-size: 15px;
+  border: none;
+  background: #fff;
+  -webkit-transition: all .15s ease-in-out;
+  -moz-transition: all .15s ease-in-out;
+  -o-transition: all .15s ease-in-out;
+  -ms-transition: all .15s ease-in-out;
+  transition: all .15s ease-in-out;
+  -webkit-box-shadow: inset 0 0 0 1px #767678;
+  box-shadow: inset 0 0 0 1px #767678;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+body {
+  color: #34373d;
+  font-size: 14px;
+  -webkit-touch-callout: none !important;
+  font-weight: 500;
+  height: 100vh;
+  overflow: hidden;
+}
+body ul {
+  list-style: none;
+}
+button {
+  background: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-align: left;
+}
+
+body i {
+  font-size: 0;
+}
