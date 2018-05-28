@@ -35,6 +35,7 @@ npm run package:mac
   - add todo
   - remove todo
   - edit todo
+  - random change background image
 
 ## Tip
 

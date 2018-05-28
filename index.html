@@ -164,10 +164,18 @@
               </div>
               <div class="tasksToolbar-subline"></div>
             </div>
+            <div class="tasksToolbar-meta">
+              <div class="tasksToolbar-actions">
+                <div class="tasksToolbar-actionsItem">
+                  <button class="button loadingButton button theme toolbarButton more" @click="randomchangeImg" aria-describedby="moreHint"
+                  aria-live="assertive" tabindex="0" aria-haspopup="true">
+                    随机切换图片
+                </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="tasksToolbar-children"> </div>
         </div>
-        <div></div>
         <div class="main-background">
           <div class="tasks">
             <div class="chunkedComponentList sticky">
@@ -220,11 +228,8 @@
           <div class="backgroundLines"></div>
         </div>
       </div>
-      <div id="detail"></div>
-      <div class="notifications"></div>
       <div>
         <div class="themeBackground themeComposition big theme01"></div>
-        <div></div>
       </div>
     </div>
   </div>
