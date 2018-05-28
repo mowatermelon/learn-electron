@@ -144,3 +144,6 @@ body .hidden {
     transform: scale(1);
   }
 }
+button{
+  cursor: pointer;
+}
