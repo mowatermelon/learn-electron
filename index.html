@@ -84,7 +84,7 @@
                 </div>
                 <div class="sidebar-lastStaticList"></div>
                 <div class="simpleDropAreaConnectorTarget">
-                  <div class="listItem" role="button" tabindex="0" aria-label="全部" :class="{selected: visibility == 'all'}" @click="visibility == 'all'">
+                  <div class="listItem" role="button" tabindex="0" aria-label="全部" :class="{selected: visibility == 'all'}" @click="visibility = 'all'">
                     <div class="listItem-inner">
                       <span class="listItem-icon">
                         <i class="icon list-24">
@@ -99,7 +99,7 @@
                       <span class="listItem-count" aria-hidden="true">{{todos.length}}</span>
                     </div>
                   </div>
-                  <div class="listItem" role="button" tabindex="0" aria-label="未完成" :class="{selected: visibility == 'active'}" @click="visibility == 'active'">
+                  <div class="listItem" role="button" tabindex="0" aria-label="未完成" :class="{selected: visibility == 'active'}" @click="visibility = 'active'">
                     <div class="listItem-inner">
                       <span class="listItem-icon">
                         <i class="icon list-24">
@@ -114,7 +114,7 @@
                       <span class="listItem-count" aria-hidden="true" v-text="remaining"></span>
                     </div>
                   </div>
-                  <div class="listItem" role="button" tabindex="0" aria-label="已完成" :class="{selected: visibility == 'completed'}" @click="visibility == 'completed'">
+                  <div class="listItem" role="button" tabindex="0" aria-label="已完成" :class="{selected: visibility == 'completed'}" @click="visibility = 'completed'">
                     <div class="listItem-inner">
                       <span class="listItem-icon">
                         <i class="icon list-24">
@@ -230,7 +230,7 @@
   </div>
 </body>
 <script src="lib/js/util.js"></script>
-<script src="lib/js/vue/dist/vue.js"></script>
+<script src="lib/js/vue/vue.min.js"></script>
 <script src="lib/js/store.js"></script>
 <script src="lib/js/app.js"></script>
 
