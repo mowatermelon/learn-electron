@@ -1,4 +1,4 @@
-# electron-watermelon
+# watermelon-todolist
 
 **Clone and run for a quick way to see Electron in action.**
 
