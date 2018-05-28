@@ -37,6 +37,20 @@ npm run package:mac
   - edit todo
   - random change background image
 
+## screenshot
+
+- when the task is not fully completed
+
+![image](https://user-images.githubusercontent.com/18508817/40623137-e1e83568-62d7-11e8-9fcd-286ccf50206d.png)
+
+- when all tasks are completed
+
+![image](https://user-images.githubusercontent.com/18508817/40623192-29d6a7ba-62d8-11e8-9d51-3b8335009d4f.png)
+
+- when you want to delete a tasks
+
+![image](https://user-images.githubusercontent.com/18508817/40623248-77592fb2-62d8-11e8-8eba-c5d387d690cb.png)
+
 ## Tip
 
 Package the corresponding system needs to be consistent with the current operating system
