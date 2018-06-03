@@ -1,4 +1,4 @@
-# electron-watermelon
+# watermelon-todolist
 
 **Clone and run for a quick way to see Electron in action.**
 
@@ -12,9 +12,9 @@ npm install electron -g
 npm install electron-packager -g
 
 # Clone this repository
-git clone https://github.com/mowatermelon/learn-electron.git
+git clone -b todolist https://github.com/mowatermelon/learn-electron.git todolist
 # Go into the repository
-cd learn-electron
+cd todolist
 # Install dependencies
 npm install
 # Run the app
@@ -31,78 +31,25 @@ npm run package:mac
 
 ## features
 
-- action test
-  - openFile
-  - undo
-  - redo
-  - cut
-  - copy
-  - paste
-  - selectall
-  - unselect
-  - delete
-  - fullScreen
-  - print
+- todo
+  - add todo
+  - remove todo
+  - edit todo
+  - random change background image
 
-- radio test
+## screenshot
 
-- checkbox test
+- when the task is not fully completed
 
-- aid-action test
+![image](https://user-images.githubusercontent.com/18508817/40623137-e1e83568-62d7-11e8-9fcd-286ccf50206d.png)
 
-  - DevTools test
-    - openDevTools
-    - closeDevTools
-  - quit test
-    - function quit
-    - normal quit
-  - dialog test
-    - showMessageBox
-    - showSaveDialog
-    - showErrorBox
+- when all tasks are completed
 
-- rightClick
-  - webview action test
-    - refresh
-    - force refresh
-    - goBack
-    - goForward
-    - zoomIn
-    - zoomOut
-    - ClearHistory
-    - toggle DevTools
-    - find in page
-    - print
-    - replace
-    - replace match style
-    - insert text
-    - AudioMuted
+![image](https://user-images.githubusercontent.com/18508817/40623192-29d6a7ba-62d8-11e8-9d51-3b8335009d4f.png)
 
-  - alert test
+- when you want to delete a tasks
 
-  - webview info test
-    - checkViewForward
-    - checkViewBack
-    - getViewUrl
-    - getViewTitle
-    - canGoToOffset
-    - isDevToolsOpen
-    - isDevToolsFocus
-    - isAudioMuted
-    - isLoading
-    - isWaitingForResponse
-    - Notification
-
-  - webview changeViewUrl test
-
-  - webview saveMenu test
-    - saveScreenShot
-    - savePdf
-
-- Tray
-  - win.show
-  - win.hide
-  - app.quit
+![image](https://user-images.githubusercontent.com/18508817/40623248-77592fb2-62d8-11e8-8eba-c5d387d690cb.png)
 
 ## Tip
 

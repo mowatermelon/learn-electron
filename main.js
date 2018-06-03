@@ -1,7 +1,16 @@
 const electron = require('electron');
 const path = require('path');
 const autoUpdater = require('./lib/js/auto-updater');
-const {app, BrowserWindow, Menu,shell,dialog,Tray,Notification,globalShortcut} = require('electron');
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  shell,
+  dialog,
+  Tray,
+  Notification,
+  globalShortcut
+} = require('electron');
 const url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -25,10 +34,14 @@ app.on('window-all-closed', () => {
 // Handle Squirrel on Windows startup events
 switch (process.argv[1]) {
   case '--squirrel-install':
-    autoUpdater.createShortcut(function () { app.quit() })
+    autoUpdater.createShortcut(function () {
+      app.quit()
+    })
     break
   case '--squirrel-uninstall':
-    autoUpdater.removeShortcut(function () { app.quit() })
+    autoUpdater.removeShortcut(function () {
+      app.quit()
+    })
     break
   case '--squirrel-obsolete':
   case '--squirrel-updated':
@@ -39,16 +52,16 @@ switch (process.argv[1]) {
 }
 
 
-function initialize () {
+function initialize() {
   var shouldQuit = makeSingleInstance();
   if (shouldQuit) return app.quit();
 
-  function createWindow () {
+  function createWindow() {
     /**
      * @param frame set false,BrowserWindow will have no menu
      */
     var windowOptions = {
-      width: 800, 
+      width: 800,
       height: 700,
       frame: true,
       icon: logo,
@@ -83,7 +96,7 @@ function initialize () {
 
     mainWindow.on('hide', () => {
       tray.setHighlightMode('never')
-    }); 
+    });
   }
 
   app.on('ready', () => {
@@ -92,7 +105,7 @@ function initialize () {
   })
 
   app.on('window-all-closed', () => {
-    if (process.platform != 'darwin'){
+    if (process.platform != 'darwin') {
       app.quit();
     }
     tray.destroy();
@@ -106,10 +119,10 @@ function initialize () {
     if (mainWindow === null) {
       createWindow();
     }
-  })  
+  })
 }
 
-function makeSingleInstance () {
+function makeSingleInstance() {
   if (process.mas) return false
 
   return app.makeSingleInstance(function () {
@@ -120,71 +133,12 @@ function makeSingleInstance () {
   })
 }
 
-function loadMenu(){
+function loadMenu() {
   const version = app.getVersion()
 
-  let application_menu = [
-    {
-      label: '操作',
-      submenu: [
-        {
-          label: '打开文件',
-          accelerator: 'CmdOrCtrl+O',
-          click: () => {
-            dialog.showOpenDialog({
-              properties: [ 'openFile', 'openDirectory', 'multiSelections' ]
-            }, function (files) {
-              if (files){
-                console.log(files);
-                getNotification("你当前选择的文件地址",files[0]);
-              }
-            })
-          }
-        },{
-          type: 'separator'
-        },{
-          label: '撤销',
-          accelerator: 'CmdOrCtrl+Z',
-          role: 'undo'
-        }, {
-          label: '重做',
-          accelerator: 'Shift+CmdOrCtrl+Z',
-          role: 'redo'
-        }, {
-          type: 'separator'
-        }, {
-          label: '剪切',
-          accelerator: 'CmdOrCtrl+X',
-          role: 'cut'
-        }, {
-          label: '复制',
-          accelerator: 'CmdOrCtrl+C',
-          role: 'copy'
-        }, {
-          label: '粘贴',
-          accelerator: 'CmdOrCtrl+V',
-          role: 'paste'
-        },{
-          type: 'separator'
-        },{
-          label: '全选',
-          accelerator: 'CmdOrCtrl+A',
-          role: 'selectall'
-        },{
-          label: '取消全选',
-          role: 'unselect',
-          visible:false
-        },{
-          type: 'separator'
-        },
-        {
-          label: '删除',
-          role: 'delete'
-        },
-        {
-          type: 'separator'
-        },
-        {
+  let application_menu = [{
+      label: '辅助功能',
+      submenu: [{
           label: '切换全屏状态',
           accelerator: (function () {
             if (process.platform === 'darwin') {
@@ -193,64 +147,14 @@ function loadMenu(){
               return 'F11'
             }
           })(),
-          click: (item, focusedWindow) =>{
+          click: (item, focusedWindow) => {
             if (focusedWindow) {
               focusedWindow.setFullScreen(!focusedWindow.isFullScreen())
             }
           }
-        },
-        {
-          type: 'separator'
-        },
-        {
-          label: '打印',
-          role: 'print'
-        }               
-      ]
-    },    
-    {
-      label: '单选框测试',
-      submenu: [
-        {
-          label: '单选框1',
-          type: 'radio',
-          checked: true
-        },
-        {
-          label: '单选框2',
-          type: 'radio',
-        },
-        {
-          label: '单选框3',
-          type: 'radio',
-        }                
-      ]
-    },
-    {
-      label: '多选框测试',
-      submenu: [
-        {
-          label: '多选框1',
-          type: 'checkbox',
-          checked: true
-        },
-        {
-          label: '多选框2',
-          type: 'checkbox',
-        },
-        {
-          label: '多选框3',
-          type: 'checkbox',
-        }                
-      ]
-    },
-    {
-      label: '辅助功能',
-      submenu: [
-        {
+        }, {
           label: '调试',
-          submenu: [
-            {
+          submenu: [{
               label: '启动调试',
               accelerator: (function () {
                 if (process.platform === 'darwin') {
@@ -259,129 +163,41 @@ function loadMenu(){
                   return 'F12'
                 }
               })(),
-              click: (item, focusedWindow) =>{
+              click: (item, focusedWindow) => {
                 focusedWindow.openDevTools();
               }
             },
             {
               label: '关闭调试',
               accelerator: 'CmdOrCtrl+B',
-              click: (item, focusedWindow) =>{
+              click: (item, focusedWindow) => {
                 focusedWindow.closeDevTools();
               }
             }
           ]
         },
+
         {
           label: '关闭窗体',
-          submenu: [
-            { 
-              label: '方法关闭',
-              accelerator: 'CmdOrCtrl+Q',
-              selector: 'terminate:',
-              click: () => {
-                app.quit();
-              }
-            },{
-              label: '默认关闭',
-              accelerator: 'CmdOrCtrl+W',
-              role: 'close'
+          submenu: [{
+            label: '方法关闭',
+            accelerator: 'CmdOrCtrl+Q',
+            selector: 'terminate:',
+            click: () => {
+              app.quit();
             }
-          ]
-        }, 
-        {
-          label: '窗体提示测试',
-          submenu: [
-          {
-            label: '文字比较少的',
-            click: (item, focusedWindow) => {
-              if (focusedWindow) {
-                const options = {
-                  type: 'info',
-                  title: app.getName(),
-                  buttons: ['确定','取消'],
-                  message: '窗体提示案例'
-                }
-                dialog.showMessageBox(focusedWindow, options, function () {});
-              }
-            }
-          },
-          {
-            label: '文字比较多的',
-            click: (item, focusedWindow) => {
-              if (focusedWindow) {
-                const options = {
-                  type: 'info',
-                  title: app.getName(),
-                  buttons: ['Ok'],
-                  message: '窗体提示案例窗体提示案例窗体提示案例窗体提示案例窗体提示案例窗体提示案例窗体提示案例窗体提示案例窗体提示案例窗体提示案例'
-                }
-                dialog.showMessageBox(focusedWindow, options, function () {});
-              }
-            }
-          },
-          {
-            label: '警告窗体',
-            click: (item, focusedWindow) => {
-              if (focusedWindow) {
-                dialog.showErrorBox('错误提示', '不知道怎么的，就出错了，日常摊手.jpg');
-              }
-            }
-          },
-          {
-            label: '文件保存窗体',
-            click: (item, focusedWindow) => {
-              if (focusedWindow) {
-                const options = {
-                  title: '保存图片',
-                  filters: [
-                    { name: 'Images', extensions: ['jpg', 'png', 'gif'] }
-                  ]
-                };
-                dialog.showSaveDialog(options, function (filename) {
-                  if (!filename) filename = '没有找到路径';
-                  console.log(`path save to ${filename}`);
-                });
-              }
-            }
-          },
-          {
-            label: '证书验证窗体',
-            visible:false,
-            click: (item, focusedWindow) => {
-              if (focusedWindow) {
-                const certificates = {
-                  data:'kkk',
-                  issuer:'mowatermelon',
-                  issuerName:'mowatermelon',
-                  issuerCert:'mowatermelon',
-                  subject:'mowatermelon',
-                  subjectName:'watermelon',
-                  serialNumber:'mowatermelon',
-                  validStart:1516125560393,
-                  validExpiry:1516125560393,
-                  fingerprint:'mowatermelon'
-                };
-                const options = {
-                  certificate:certificates,
-                  message:'啦啦啦啦'
-                };
-                dialog.showCertificateTrustDialog(options, function (filename) {
-                  if (!filename) filename = '没有找到路径';
-                  console.log(`path save to ${filename}`);
-                });
-              }
-            }
-          }
-        ]
-
+          }, {
+            label: '默认关闭',
+            accelerator: 'CmdOrCtrl+W',
+            role: 'close'
+          }]
         }
       ]
-    },    
+
+    },
     {
       label: '帮助',
-      submenu: [
-        {
+      submenu: [{
           label: `Version ${version}`,
           enabled: false
         }, {
@@ -394,106 +210,88 @@ function loadMenu(){
           }
         },
         {
-          label: '关于 electron-watermelon',
-          click:function(){
-              if (win_about == null) {
-                win_about = new BrowserWindow({
-                    width: 300,
-                    height: 240,
-                    title: '关于 electron-watermelon',
-                    center: true,
-                    resizable: false,
-                    frame:true,
-                    icon: logo,
-                    minimizable: false,
-                    maximizable: false
-                });
-                win_about.setMenu(null)
-                win_about.loadURL(url.format({
-                    pathname: path.join(__dirname, 'lib/page/about.html'),
-                    protocol: 'file:',
-                    slashes: true
-                }));
+          label: '关于 watermelon-todolist',
+          click: function () {
+            if (win_about == null) {
+              win_about = new BrowserWindow({
+                width: 300,
+                height: 240,
+                title: '关于 watermelon-todolist',
+                center: true,
+                resizable: false,
+                frame: true,
+                icon: logo,
+                minimizable: false,
+                maximizable: false
+              });
+              win_about.setMenu(null)
+              win_about.loadURL(url.format({
+                pathname: path.join(__dirname, 'lib/page/about.html'),
+                protocol: 'file:',
+                slashes: true
+              }));
 
-                win_about.on('closed', (e) => {
-                    win_about = null;
-                });
+              win_about.on('closed', (e) => {
+                win_about = null;
+              });
             }
           }
         },
-        {
-          label: '重新加载更新包',
-          enabled: true,
-          visible:true,
-          key: 'restartToUpdate',
-          click: () => {
-            console.log("restartToUpdate");
-            electron.autoUpdater.quitAndInstall();
-          }
-        },{
-          label: '重新加载列表',
-          enabled: true,
-          visible:false,
-          key: 'reopenMenuItem',
-          click: () => {
-            console.log("reopenMenuItem");            
-            app.emit('activate')
-          }
-        },{
+         {
           type: 'separator'
-        },{
+        }, {
           label: '了解更多',
           click: () => {
-            shell.openExternal('https://github.com/mowatermelon/learn-electron');
+            shell.openExternal('https://github.com/mowatermelon/learn-electron/tree/todolist');
           }
-        },{
+        }, {
           type: 'separator'
-        },{
+        }, {
           label: '最小化',
           accelerator: 'CmdOrCtrl+M',
           role: 'minimize',
-          click: (item, focusedWindow) =>{
+          click: (item, focusedWindow) => {
             if (focusedWindow) {
               focusedWindow.isMinimized() ? focusedWindow.unminimize() : focusedWindow.minimize();
             }
           }
-        },{
+        }, {
           label: '最大化',
           accelerator: 'CmdOrCtrl+L',
           role: 'maximize',
-          click: (item, focusedWindow) =>{
+          click: (item, focusedWindow) => {
             if (focusedWindow) {
               focusedWindow.isMaximized() ? focusedWindow.unmaximize() : focusedWindow.maximize();
             }
           }
-        },{
+        }, {
           type: 'separator'
-        },{
+        }, {
           label: '获取窗体大小',
-          click: (item, focusedWindow) =>{
+          click: (item, focusedWindow) => {
             if (focusedWindow) {
               const options = {
                 type: 'info',
                 title: app.getName(),
-                buttons: ['Ok','Close'],
-                message: '当前窗体大小'+focusedWindow.getSize().toString()
+                buttons: ['Ok', 'Close'],
+                message: '当前窗体大小' + focusedWindow.getSize().toString()
               };
               dialog.showMessageBox(focusedWindow, options, function () {});
-              
+
             }
           }
 
-        },{
+        }, {
           label: '获取窗体位置',
-          click: (item, focusedWindow) =>{
+          click: (item, focusedWindow) => {
             if (focusedWindow) {
               const options = {
                 type: 'info',
                 title: app.getName(),
-                buttons: ['Ok','Close'],
-                message: '当前窗体位置'+focusedWindow.getPosition().toString()
+                buttons: ['Ok', 'Close'],
+                message: '当前窗体位置' + focusedWindow.getPosition().toString()
               };
-              dialog.showMessageBox(focusedWindow, options, function () {});              
+              dialog.showMessageBox(focusedWindow, options, function () {});
             }
           }
         }
@@ -505,8 +303,7 @@ function loadMenu(){
     const name = app.getName();
     application_menu.unshift({
       label: name,
-      submenu: [
-        {
+      submenu: [{
           label: 'About ' + name,
           role: 'about'
         },
@@ -541,7 +338,9 @@ function loadMenu(){
         {
           label: 'Quit',
           accelerator: 'Command+Q',
-          click: () => { app.quit(); }
+          click: () => {
+            app.quit();
+          }
         },
       ]
     });
@@ -560,12 +359,12 @@ function loadMenu(){
   Menu.setApplicationMenu(menu);
 }
 
-function getNotification(title,body){
+function getNotification(title, body) {
   const notification = {
     title: title,
     body: body,
-    icon:slogan,
-    silent:false
+    icon: slogan,
+    silent: false
   };
   const myNotification = new Notification(notification.title, notification);
   myNotification.onclick = () => {
@@ -576,16 +375,15 @@ function getNotification(title,body){
   };
 }
 
-function addTray(){
+function addTray() {
   tray = new Tray(logo);
-  const contextMenu = Menu.buildFromTemplate([
-    {
+  const contextMenu = Menu.buildFromTemplate([{
       label: '打开软件',
-      click: () =>{
-        if(!mainWindow.isVisible()){
+      click: () => {
+        if (!mainWindow.isVisible()) {
           mainWindow.show();
-        }else{
-          if(mainWindow.isMinimized()){
+        } else {
+          if (mainWindow.isMinimized()) {
             mainWindow.unminimize();
           }
         }
@@ -593,15 +391,15 @@ function addTray(){
     },
     {
       label: '隐藏软件',
-      click: () =>{
-        if(mainWindow.isVisible()){
+      click: () => {
+        if (mainWindow.isVisible()) {
           mainWindow.hide();
         }
       }
     },
     {
       label: '关闭软件',
-      click: () =>{
+      click: () => {
         app.quit();
       }
     }
@@ -612,10 +410,10 @@ function addTray(){
   tray.setContextMenu(contextMenu);
 
   tray.on('click', () => {
-    if(!mainWindow.isVisible()){
+    if (!mainWindow.isVisible()) {
       mainWindow.show();
-    }else{
-      if(mainWindow.isMinimized()){
+    } else {
+      if (mainWindow.isMinimized()) {
         mainWindow.unminimize();
       }
     }
